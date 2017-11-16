@@ -123,6 +123,40 @@ class todo extends model {
 		    }
             
             
+      echo '<table>';
+            echo '<tr><th>ID</th><th>Email</th><th>fname</th><th>lname</th><th>phone</th><th>birthday</th><th>gender</th><th>password</th></tr>';
+	$r3 = accounts::findOne(1);
+  echo '<tr>';
+echo '<td>'.$r3->id.'</td>';
+echo '<td>'.$r3->email.'</td>';
+echo '<td>'.$r3->fname.'</td>';
+echo '<td>'.$r3->lname.'</td>';
+echo '<td>'.$r3->phone.'</td>';
+echo '<td>'.$r3->birthday.'</td>';
+echo '<td>'.$r3->gender.'</td>';
+echo '<td>'.$r3->password.'</td>';
+
+
+  echo '</tr>';
+  echo '</table>';
+
+            
+      echo '<table>';
+            echo '<tr><th>ID</th><th>Email</th><th>fname</th><th>lname</th><th>phone</th><th>birthday</th><th>gender</th><th>password</th></tr>';
+	$r3 = todos::findOne(1);
+  echo '<tr>';
+echo '<td>'.$r3->id.'</td>';
+echo '<td>'.$r3->owneremail.'</td>';
+echo '<td>'.$r3->ownerid.'</td>';
+echo '<td>'.$r3->createddate.'</td>';
+echo '<td>'.$r3->duedate.'</td>';
+echo '<td>'.$r3->message.'</td>';
+echo '<td>'.$r3->isdone.'</td>';
+
+
+
+  echo '</tr>';
+  echo '</table>';
             
             
             echo '<table>';
@@ -164,6 +198,8 @@ echo '<td>'.$item->isdone.'</td>';
 echo '</tr>';
 }
 echo '</table>';
+
+echo '<table>';
 
 
 ?>
