@@ -74,22 +74,37 @@ class model {
         $columnString = implode(',', $array);
         $valueString = ":".implode(',:', $array);
 	echo 'I just saved record: ' . $this->id;
+	echo '<hr/>';
 	}
 	private function insert() {
 
 		$sql = 'SELECT * FROM accounts';
 	        return $sql;
+		echo '<hr/>';
 	    }
         private function update() {
 	        $sql = "UPDATE `accounts` SET `id`=1,`email`=sm2555,`fname`=m,`lname`=s,`phone`=551,`birthday`=3-8,`gender`=f,`password`=3549	WHERE 1";
 	        return $sql;
 	        echo 'I just updated record' . $this->id;
+	    	echo '<hr/>';
 	    }
+
 	 public function delete() {
 	         echo 'I just deleted record' . $this->id;
+		 echo '<hr/>';    
 		     }
+
 }
 class account extends model {
+ public $id;
+ public $email;
+ public $fname;
+ public $lname;
+ public $phone;
+ public $birthday;
+ public $gender;
+ public $password;
+
 }
 
 class todo extends model {
@@ -103,23 +118,24 @@ class todo extends model {
  public function __construct()
      {
              $this->tableName = 'todos';
-	     	
+	     $this->tableName = 'accounts';	     	
 		    }
 		    }
 	$records = accounts::findAll();
 	print_r($records);
+	echo '<hr/>';
 	$records = todos::findAll();
 	print_r($records);
-	$record = todos::findOne(1);
-	print_r($record);
-	$record = todos::findOne(1);
-	print_r($record);
-	$record->save();
-        $record = accounts::findOne(1);
+//	$record = todos::findOne(id)
+//	print_r($record);
+//	$record = todos::findOne(1);
+//	print_r($record);
+//	$record->save();
+  //      $record = accounts::findOne(id);
 	$record = new todo();
 	$record->message = 'some task';
 	$record->isdone = 0;
-	$record->save();
+//	$record->save();
 	print_r($record);
 	$record = todos::create();
 	print_r($record);
