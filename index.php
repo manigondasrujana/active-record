@@ -117,29 +117,53 @@ class todo extends model {
 			    public $isdone;
  public function __construct()
      {
-             $this->tableName = 'todos';
+  
 	     $this->tableName = 'accounts';	     	
 		    }
 		    }
+            
+            
+            
+            
+            echo '<table>';
+            echo '<tr><th>ID</th><th>Email</th><th>fname</th><th>lname</th><th>phone</th><th>birthday</th><th>gender</th><th>password</th></tr>';
 	$records = accounts::findAll();
-	print_r($records);
-	echo '<hr/>';
-	$records = todos::findAll();
-	print_r($records);
-//	$record = todos::findOne(id)
-//	print_r($record);
-//	$record = todos::findOne(1);
-//	print_r($record);
-//	$record->save();
-  //      $record = accounts::findOne(id);
-	$record = new todo();
-	$record->message = 'some task';
-	$record->isdone = 0;
-//	$record->save();
-	print_r($record);
-	$record = todos::create();
-	print_r($record);
 
+  foreach($records as $item) 
+  {
+  echo '<tr>';
+echo '<td>'.$item->id.'</td>';
+echo '<td>'.$item->email.'</td>';
+echo '<td>'.$item->fname.'</td>';
+echo '<td>'.$item->lname.'</td>';
+echo '<td>'.$item->phone.'</td>';
+echo '<td>'.$item->birthday.'</td>';
+echo '<td>'.$item->gender.'</td>';
+echo '<td>'.$item->password.'</td>';
+
+
+  echo '</tr>';
+  }
+  echo '</table>';
+
+
+echo '<table>';
+  echo '<tr><th>ID</th><th>OwnerEmail</th><th>ownerid</th><th>createddate</th><th>duedate</th><th>message</th><th>isdone</th></tr>';
+	
+$records2 = todos::findAll();
+  foreach($records2 as $item) 
+  {
+  echo '<tr>';
+echo '<td>'.$item->id.'</td>';
+echo '<td>'.$item->owneremail.'</td>';
+echo '<td>'.$item->ownerid.'</td>';
+echo '<td>'.$item->createddate.'</td>';
+echo '<td>'.$item->duedate.'</td>';
+echo '<td>'.$item->message.'</td>';
+echo '<td>'.$item->isdone.'</td>'; 
+echo '</tr>';
+}
+echo '</table>';
 
 
 ?>
