@@ -80,12 +80,16 @@ class model {
 	}
 	private function insert() {
  $sql = "INSERT INTO accounts (id,email,fname,lname,phone,birthday,gender,password) VALUES (1,S,R,U,35,30-08,F,49)";
- //      return $sql;
-       if ($db->query($sql) === TRUE) {
+       //return $sql;
+       $conn->exec($sql);
     echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . $db->error;
-}
+    }
+catch(PDOException $e)
+    {
+    echo $sql . "<br>" . $e->getMessage();
+    }
+
+$conn = null;
                  
                  
                  
