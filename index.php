@@ -62,7 +62,7 @@ class model {
     public function save()
 	    {
 	if ($this->id = '') {
-	$sql = $this->insert();i
+	$sql = $this->insert();
 	        } else {
 		            $sql = $this->update();
 	 }
@@ -77,9 +77,20 @@ class model {
 	echo '<hr/>';
 	}
 	private function insert() {
+ $sql = 'INSERT INTO 'accounts'('id', 'email', 'fname', 'lname', 'phone', 'birthday', 'gender', 'password') VALUES (11,sm255@njt.edu,m,sruji,5516489588,30-08-89,female,3549)';
+if ($db->query($sql) === TRUE) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $db->error;
+}
+$db->close();
 
-		$sql = 'INSERT INTO `accounts`(`id`, `email`, `fname`, `lname`, `phone`, `birthday`, `gender`, `password`) VALUES (11,sm255@njt.edu,m,sruji,5516489588,30-08-89,female,3549)';
-	        return $sql;
+
+//		$sql = 'INSERT INTO `accounts`(`id`, `email`, `fname`, `lname`, `phone`, `birthday`, `gender`, `password`) VALUES (11,sm255@njt.edu,m,sruji,5516489588,30-08-89,female,3549)';
+	//        return $sql;
+                 
+                 
+                 
 		echo '<hr/>';
 	    }
         private function update() {
