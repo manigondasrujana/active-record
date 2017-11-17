@@ -73,28 +73,21 @@ class model {
 	$array = get_object_vars($this);
         $columnString = implode(',', $array);
         $valueString = ":".implode(',:', $array);
-	echo 'I just saved record: ' . $this->id;
+   echo "INSERT INTO $tableName (" . $columnString . ") VALUES (" . $valueString . ")</br>";
+
+  echo 'I just saved record: ' . $this->id;
 	echo '<hr/>';
 	}
 	private function insert() {
- $sql = 'INSERT INTO 'accounts'('id', 'email', 'fname', 'lname', 'phone', 'birthday', 'gender', 'password') VALUES (11,sm255@njt.edu,m,sruji,5516489588,30-08-89,female,3549)';
-if ($db->query($sql) === TRUE) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . $db->error;
-}
-$db->close();
-
-
-//		$sql = 'INSERT INTO `accounts`(`id`, `email`, `fname`, `lname`, `phone`, `birthday`, `gender`, `password`) VALUES (11,sm255@njt.edu,m,sruji,5516489588,30-08-89,female,3549)';
-	//        return $sql;
+ $sql='';
+       return $sql;
                  
                  
                  
 		echo '<hr/>';
 	    }
         private function update() {
-	        $sql = "UPDATE `accounts` SET `id`=1,`email`=sm2555,`fname`=m,`lname`=s,`phone`=551,`birthday`=3-8,`gender`=f,`password`=3549	WHERE 1";
+	        $sql = 'sql';
 	        return $sql;
 	        echo 'I just updated record' . $this->id;
 	    	echo '<hr/>';
@@ -133,8 +126,8 @@ class todo extends model {
 		    }
 		    }
             
-            
-      echo '<table>';
+      echo "<h1> Select One Record from accounts</h1>";      
+      echo '<table border="1">';
             echo '<tr><th>ID</th><th>Email</th><th>fname</th><th>lname</th><th>phone</th><th>birthday</th><th>gender</th><th>password</th></tr>';
 	$r3 = accounts::findOne(1);
   echo '<tr>';
@@ -151,9 +144,9 @@ echo '<td>'.$r3->password.'</td>';
   echo '</tr>';
   echo '</table>';
 
-            
-      echo '<table>';
-            echo '<tr><th>ID</th><th>Email</th><th>fname</th><th>lname</th><th>phone</th><th>birthday</th><th>gender</th><th>password</th></tr>';
+      echo "<h1> Select One Record from todos</h1>";      
+      echo '<table border="1">';
+            echo '<tr><th>ID</th><th>OwnerEmail</th><th>OwnerId</th><th>createddate</th><th>duedate</th><th>message</th><th>isdone</th></tr>';
 	$r3 = todos::findOne(1);
   echo '<tr>';
 echo '<td>'.$r3->id.'</td>';
@@ -169,8 +162,8 @@ echo '<td>'.$r3->isdone.'</td>';
   echo '</tr>';
   echo '</table>';
             
-            
-            echo '<table>';
+            echo "<h1> Select all Records from accounts</h1>";
+            echo '<table border="1">';
             echo '<tr><th>ID</th><th>Email</th><th>fname</th><th>lname</th><th>phone</th><th>birthday</th><th>gender</th><th>password</th></tr>';
 	$records = accounts::findAll();
 
@@ -191,8 +184,8 @@ echo '<td>'.$item->password.'</td>';
   }
   echo '</table>';
 
-
-echo '<table>';
+echo "<h1> Select all Records from todos</h1>";
+echo '<table border="1">';
   echo '<tr><th>ID</th><th>OwnerEmail</th><th>ownerid</th><th>createddate</th><th>duedate</th><th>message</th><th>isdone</th></tr>';
 	
 $records2 = todos::findAll();
@@ -211,6 +204,21 @@ echo '</tr>';
 echo '</table>';
 
 echo '<table>';
+
+
+$record = new todo();
+$record->id = '19';
+$record->owneremail = 'msrujana@gmail';
+$record->ownerid = 49;
+$record->createddate = '30-08-2001';
+$record->duedate = '10-01-2010';
+$record->message = 'some task';
+$record->isdone = 0;
+//$record->save();
+print_r($record);
+
+//$records1 = todos::create();
+
 
 
 ?>
