@@ -79,18 +79,8 @@ class model {
 	echo '<hr/>';
 	}
 	private function insert() {
- $sql = "INSERT INTO accounts (id,email,fname,lname,phone,birthday,gender,password) VALUES (1,S,R,U,35,30-08,F,49)";
-       //return $sql;
-       $conn->exec($sql);
-    echo "New record created successfully";
-    }
-catch(PDOException $e)
-    {
-    echo $sql . "<br>" . $e->getMessage();
-    }
-
-$conn = null;
-                 
+ $sql = '';
+ return $sql;
                  
                  
 		echo '<hr/>';
