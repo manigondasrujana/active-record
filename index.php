@@ -79,8 +79,13 @@ class model {
 	echo '<hr/>';
 	}
 	private function insert() {
- $sql='';
-       return $sql;
+ $sql = "INSERT INTO accounts (id,email,fname,lname,phone,birthday,gender,password) VALUES (1,S,R,U,35,30-08,F,49)";
+ //      return $sql;
+       if ($db->query($sql) === TRUE) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $db->error;
+}
                  
                  
                  
@@ -203,8 +208,6 @@ echo '</tr>';
 }
 echo '</table>';
 
-echo '<table>';
-
 
 $record = new todo();
 $record->id = '19';
@@ -214,9 +217,9 @@ $record->createddate = '30-08-2001';
 $record->duedate = '10-01-2010';
 $record->message = 'some task';
 $record->isdone = 0;
-//$record->save();
-print_r($record);
 
+print_r($record);
+//$record = todos::save();
 //$records1 = todos::create();
 
 
