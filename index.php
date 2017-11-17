@@ -62,7 +62,7 @@ class model {
     public function save()
 	    {
 	if ($this->id = '') {
-	$sql = $this->insert();
+	$sql = $this->insert();i
 	        } else {
 		            $sql = $this->update();
 	 }
@@ -78,7 +78,7 @@ class model {
 	}
 	private function insert() {
 
-		$sql = 'SELECT * FROM accounts';
+		$sql = 'INSERT INTO `accounts`(`id`, `email`, `fname`, `lname`, `phone`, `birthday`, `gender`, `password`) VALUES (11,sm255@njt.edu,m,sruji,5516489588,30-08-89,female,3549)';
 	        return $sql;
 		echo '<hr/>';
 	    }
