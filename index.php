@@ -61,39 +61,66 @@ class model {
     protected $tableName;
     public function save()
 	    {
-	if ($this->id = '') {
-	$sql = $this->insert();
+	if ($this->id != '') {
+	$sql = $this->update($this->id);
 	        } else {
-		            $sql = $this->update();
+		            $sql = $this->insert();
 	 }
 	$db = dbConn::getConnection();
         $statement = $db->prepare($sql);
+        
         $statement->execute();
         $tableName = get_called_class();
 	$array = get_object_vars($this);
-        $columnString = implode(',', $array);
-        $valueString = ":".implode(',:', $array);
-   echo "INSERT INTO $tableName (" . $columnString . ") VALUES (" . $valueString . ")</br>";
+       // $columnString = implode(',', $array);
+     //   $valueString = ":".implode(',:', $array);
+   //echo "INSERT INTO $tableName (" . $columnString . ") VALUES (" . $valueString . ")</br>";
 
-  echo 'I just saved record: ' . $this->id;
+  echo '<h2>I just saved record: </h2>';
 	echo '<hr/>';
 	}
 	private function insert() {
- $sql = '';
- return $sql;
-                 
-                 
-		echo '<hr/>';
+ $modelName=get_called_class();
+        $tableName = $modelName::tname();
+        $array = get_object_vars($this);
+        $columnString = implode(',', array_flip($array));
+        $valueString = ':'.implode(',:', array_flip($array));
+        print_r($columnString);
+        $sql =  'INSERT INTO '.$tableName.' ('.$columnString.') VALUES ('.$valueString.')';
+        return $sql;
+               
+     		echo '<hr/>';
+        
 	    }
-        private function update() {
-	        $sql = 'sql';
-	        return $sql;
+        private function update($id) {
+	        $modelName=get_called_class();
+        $tableName = $modelName::tname();
+        $array = get_object_vars($this);
+        $comma = " ";
+        $sql = 'UPDATE '.$tableName.' SET ';
+         foreach ($array as $key=>$value){
+            if( ! empty($value)) {
+                $sql .= $comma . $key . ' = "'. $value .'"';
+                $comma = ", ";
+            }
+        }
+         $sql .= ' WHERE id='.$id;
+      
+        return $sql;
+      
 	        echo 'I just updated record' . $this->id;
 	    	echo '<hr/>';
 	    }
 
-	 public function delete() {
-	         echo 'I just deleted record' . $this->id;
+	 public function delete($id) {
+           $db = dbConn::getConnection();
+        $modelName=get_called_class();
+        $tableName = $modelName::tname();
+        $sql = 'DELETE FROM '.$tableName.' WHERE id='.$id;
+        $statement = $db->prepare($sql);
+        $statement->execute();
+
+	         echo '<h2>I just deleted record</h2>' . $this->id;
 		 echo '<hr/>';    
 		     }
 
@@ -107,6 +134,10 @@ class account extends model {
  public $birthday;
  public $gender;
  public $password;
+ public static function tname(){
+        $tableName='accounts';
+        return $tableName;
+   }
 
 }
 
@@ -118,11 +149,16 @@ class todo extends model {
 		    public $duedate;
 		        public $message;
 			    public $isdone;
- public function __construct()
-     {
+                      public static function tname(){
+        $tableName='todos';
+        return $tableName;
+   }
+
+// public function __construct()
+     //{
   
-	     $this->tableName = 'accounts';	     	
-		    }
+	     //$this->tableName = 'accounts';	     	
+		    //}
 		    }
             
       echo "<h1> Select One Record from accounts</h1>";      
@@ -199,6 +235,7 @@ echo '<td>'.$item->duedate.'</td>';
 echo '<td>'.$item->message.'</td>';
 echo '<td>'.$item->isdone.'</td>'; 
 echo '</tr>';
+
 }
 echo '</table>';
 
@@ -211,8 +248,27 @@ $record->createddate = '30-08-2001';
 $record->duedate = '10-01-2010';
 $record->message = 'some task';
 $record->isdone = 0;
+$record->save();
+$records = accounts::findAll();
+print_r($records);
 
-print_r($record);
+
+$record= new account();
+$id=43;
+$record->delete($id);
+
+echo "<h2> updates fname,lname,gender where id=9 </h2>";
+$id=9;
+$record = new account();
+$record->id=$id;
+$record->fname="manigonda";
+$record->lname="srujana";
+$record->gender="female";
+$record->save();
+
+//$records = accounts::findAll();
+//print_r($records);
+
 //$record = todos::save();
 //$records1 = todos::create();
 
