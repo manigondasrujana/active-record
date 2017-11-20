@@ -68,10 +68,17 @@ class model {
 	 }
 	$db = dbConn::getConnection();
         $statement = $db->prepare($sql);
+  $array = get_object_vars($this);
+                foreach (array_flip($array) as $record=>$item){
+                
+
+            $statement->bindParam(":$item", $this->$item);
+        }
+
         
         $statement->execute();
-        $tableName = get_called_class();
-	$array = get_object_vars($this);
+        //$tableName = get_called_class();
+	
        // $columnString = implode(',', $array);
      //   $valueString = ":".implode(',:', $array);
    //echo "INSERT INTO $tableName (" . $columnString . ") VALUES (" . $valueString . ")</br>";
@@ -96,12 +103,12 @@ class model {
 	        $modelName=get_called_class();
         $tableName = $modelName::tname();
         $array = get_object_vars($this);
-        $comma = " ";
+        $update = " ";
         $sql = 'UPDATE '.$tableName.' SET ';
-         foreach ($array as $key=>$value){
-            if( ! empty($value)) {
-                $sql .= $comma . $key . ' = "'. $value .'"';
-                $comma = ", ";
+         foreach ($array as $record=>$item){
+            if( ! empty($item)) {
+                $sql .= $update . $record . ' = "'. $item .'"';
+                $update = ", ";
             }
         }
          $sql .= ' WHERE id='.$id;
@@ -240,17 +247,18 @@ echo '</tr>';
 echo '</table>';
 
 
-$record = new todo();
-$record->id = '19';
-$record->owneremail = 'msrujana@gmail';
-$record->ownerid = 49;
-$record->createddate = '30-08-2001';
-$record->duedate = '10-01-2010';
-$record->message = 'some task';
-$record->isdone = 0;
+$record = new account();
+$record = new account();
+$record->email="sm2555@njit.edu";
+$record->fname="m";
+$record->lname="s";
+$record->phone="3549";
+$record->birthday="1989-08-08";
+$record->gender="f";
+$record->password="3549";
 $record->save();
-$records = accounts::findAll();
-print_r($records);
+$records = accounts::findAll();//$records = todos::findAll();
+//print_r($records);
 
 
 $record= new account();
