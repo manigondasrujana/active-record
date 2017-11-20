@@ -172,7 +172,7 @@ echo '<td>'.$r3->gender.'</td>';
 echo '<td>'.$r3->password.'</td>';
   echo '</tr>';
   echo '</table>';
-      echo "<h1> Select One Record from todos</h1>";      
+      echo "<h1> Select One Record from todos after inserting</h1>";      
       echo '<table border="1">';
             echo '<tr><th>ID</th><th>OwnerEmail</th><th>OwnerId</th><th>createddate</th><th>duedate</th><th>message</th><th>isdone</th></tr>';
 	$r3 = todos::findOne(1);
@@ -205,7 +205,7 @@ echo '<td>'.$item->password.'</td>';
   echo '</tr>';
   }
   echo '</table>';
-echo "<h1> Select all Records from todos</h1>";
+echo "<h1> Select all Records from todos after inserting</h1>";
 echo '<table border="1">';
   echo '<tr><th>ID</th><th>OwnerEmail</th><th>ownerid</th><th>createddate</th><th>duedate</th><th>message</th><th>isdone</th></tr>';
 	
