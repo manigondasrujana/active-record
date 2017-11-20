@@ -172,7 +172,7 @@ echo '<td>'.$r3->gender.'</td>';
 echo '<td>'.$r3->password.'</td>';
   echo '</tr>';
   echo '</table>';
-      echo "<h1> Select One Record from todos after inserting</h1>";      
+      echo "<h1> Select One Record from todos</h1>";      
       echo '<table border="1">';
             echo '<tr><th>ID</th><th>OwnerEmail</th><th>OwnerId</th><th>createddate</th><th>duedate</th><th>message</th><th>isdone</th></tr>';
 	$r3 = todos::findOne(1);
@@ -187,7 +187,7 @@ echo '<td>'.$r3->isdone.'</td>';
   echo '</tr>';
   echo '</table>';
             
-            echo "<h1> Select all Records from accounts</h1>";
+            echo "<h1> Select all Records from accounts after inserting</h1>";
             echo '<table border="1">';
             echo '<tr><th>ID</th><th>Email</th><th>fname</th><th>lname</th><th>phone</th><th>birthday</th><th>gender</th><th>password</th></tr>';
 	$records = accounts::findAll();
@@ -233,7 +233,7 @@ $record->birthday="1989-08-08";
 $record->gender="f";
 $record->password="3549";
 $record->save();
-$records = accounts::findAll();
+//$records = accounts::findAll();
 
 $record = new todo();
         //$record->id=49;        
@@ -244,7 +244,7 @@ $record = new todo();
         $record->message="omg";
         $record->isdone=1;
         $record->save();
-        $records = todos::findAll();
+//        $records = todos::findAll();
 
 //$records = todos::findAll();
 //print_r($records);
