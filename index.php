@@ -71,10 +71,8 @@ class model {
   $array = get_object_vars($this);
                 foreach (array_flip($array) as $record=>$item){
                 
-
             $statement->bindParam(":$item", $this->$item);
         }
-
         
         $statement->execute();
         //$tableName = get_called_class();
@@ -82,7 +80,6 @@ class model {
        // $columnString = implode(',', $array);
      //   $valueString = ":".implode(',:', $array);
    //echo "INSERT INTO $tableName (" . $columnString . ") VALUES (" . $valueString . ")</br>";
-
   echo '<h2>I just saved record: </h2>';
 	echo '<hr/>';
 	}
@@ -118,7 +115,6 @@ class model {
 	        echo 'I just updated record' . $this->id;
 	    	echo '<hr/>';
 	    }
-
 	 public function delete($id) {
            $db = dbConn::getConnection();
         $modelName=get_called_class();
@@ -126,11 +122,9 @@ class model {
         $sql = 'DELETE FROM '.$tableName.' WHERE id='.$id;
         $statement = $db->prepare($sql);
         $statement->execute();
-
 	         echo '<h2>I just deleted record</h2>' . $this->id;
 		 echo '<hr/>';    
 		     }
-
 }
 class account extends model {
  public $id;
@@ -145,9 +139,7 @@ class account extends model {
         $tableName='accounts';
         return $tableName;
    }
-
 }
-
 class todo extends model {
     public $id;
         public $owneremail;
@@ -160,7 +152,6 @@ class todo extends model {
         $tableName='todos';
         return $tableName;
    }
-
 // public function __construct()
      //{
   
@@ -181,11 +172,8 @@ echo '<td>'.$r3->phone.'</td>';
 echo '<td>'.$r3->birthday.'</td>';
 echo '<td>'.$r3->gender.'</td>';
 echo '<td>'.$r3->password.'</td>';
-
-
   echo '</tr>';
   echo '</table>';
-
       echo "<h1> Select One Record from todos</h1>";      
       echo '<table border="1">';
             echo '<tr><th>ID</th><th>OwnerEmail</th><th>OwnerId</th><th>createddate</th><th>duedate</th><th>message</th><th>isdone</th></tr>';
@@ -198,9 +186,6 @@ echo '<td>'.$r3->createddate.'</td>';
 echo '<td>'.$r3->duedate.'</td>';
 echo '<td>'.$r3->message.'</td>';
 echo '<td>'.$r3->isdone.'</td>';
-
-
-
   echo '</tr>';
   echo '</table>';
             
@@ -208,7 +193,6 @@ echo '<td>'.$r3->isdone.'</td>';
             echo '<table border="1">';
             echo '<tr><th>ID</th><th>Email</th><th>fname</th><th>lname</th><th>phone</th><th>birthday</th><th>gender</th><th>password</th></tr>';
 	$records = accounts::findAll();
-
   foreach($records as $item) 
   {
   echo '<tr>';
@@ -220,12 +204,9 @@ echo '<td>'.$item->phone.'</td>';
 echo '<td>'.$item->birthday.'</td>';
 echo '<td>'.$item->gender.'</td>';
 echo '<td>'.$item->password.'</td>';
-
-
   echo '</tr>';
   }
   echo '</table>';
-
 echo "<h1> Select all Records from todos</h1>";
 echo '<table border="1">';
   echo '<tr><th>ID</th><th>OwnerEmail</th><th>ownerid</th><th>createddate</th><th>duedate</th><th>message</th><th>isdone</th></tr>';
@@ -242,12 +223,9 @@ echo '<td>'.$item->duedate.'</td>';
 echo '<td>'.$item->message.'</td>';
 echo '<td>'.$item->isdone.'</td>'; 
 echo '</tr>';
-
 }
 echo '</table>';
-
-
-$record = new account();
+//$record = new account();
 $record = new account();
 $record->email="sm2555@njit.edu";
 $record->fname="m";
@@ -259,27 +237,19 @@ $record->password="3549";
 $record->save();
 $records = accounts::findAll();//$records = todos::findAll();
 //print_r($records);
-
-
 $record= new account();
 $id=43;
 $record->delete($id);
-
-echo "<h2> updates fname,lname,gender where id=9 </h2>";
-$id=9;
+echo "<h2> updates fname,lname,gender where id=1 </h2>";
+$id=1;
 $record = new account();
 $record->id=$id;
 $record->fname="manigonda";
 $record->lname="srujana";
 $record->gender="female";
 $record->save();
-
 //$records = accounts::findAll();
 //print_r($records);
-
 //$record = todos::save();
 //$records1 = todos::create();
-
-
-
 ?>
