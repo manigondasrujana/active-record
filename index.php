@@ -1,6 +1,4 @@
 <?php
-ini_set('display_errors', 'On');
-error_reporting(E_ALL);
 define('DATABASE', 'sm2555');
 define('USERNAME', 'sm2555');
 define('PASSWORD', 'tzw8bjLL');
@@ -112,7 +110,7 @@ class model {
       
         return $sql;
       
-	        echo 'I just updated record' . $this->id;
+	        //echo 'I just updated record' . $this->id;
 	    	echo '<hr/>';
 	    }
 	 public function delete($id) {
@@ -225,8 +223,8 @@ echo '<td>'.$item->isdone.'</td>';
 echo '</tr>';
 }
 echo '</table>';
-//$record = new account();
 $record = new account();
+$record->id=49;
 $record->email="sm2555@njit.edu";
 $record->fname="m";
 $record->lname="s";
@@ -235,11 +233,26 @@ $record->birthday="1989-08-08";
 $record->gender="f";
 $record->password="3549";
 $record->save();
-$records = accounts::findAll();//$records = todos::findAll();
+$records = accounts::findAll();
+
+$record = new todo();
+        //$record->id=49;        
+        $record->owneremail="sm2555@njit.edu";
+        $record->ownerid=49;
+        $record->createddate="30-08-2000";
+        $record->duedate="12-12-2012";
+        $record->message="omg";
+        $record->isdone=1;
+        $record->save();
+        $records = todos::findAll();
+
+//$records = todos::findAll();
 //print_r($records);
+echo "<h2> delete the row where id=5 in accounts </h2>";
 $record= new account();
-$id=43;
+$id=5;
 $record->delete($id);
+
 echo "<h2> updates fname,lname,gender where id=1 </h2>";
 $id=1;
 $record = new account();
@@ -248,8 +261,4 @@ $record->fname="manigonda";
 $record->lname="srujana";
 $record->gender="female";
 $record->save();
-//$records = accounts::findAll();
-//print_r($records);
-//$record = todos::save();
-//$records1 = todos::create();
 ?>
