@@ -187,7 +187,7 @@ echo '<td>'.$r3->isdone.'</td>';
   echo '</tr>';
   echo '</table>';
             
-            echo "<h1> Select all Records from accounts after inserting</h1>";
+            echo "<h1> Select all Records from accounts after inserting, updating, deleting</h1>";
             echo '<table border="1">';
             echo '<tr><th>ID</th><th>Email</th><th>fname</th><th>lname</th><th>phone</th><th>birthday</th><th>gender</th><th>password</th></tr>';
 	$records = accounts::findAll();
@@ -205,7 +205,7 @@ echo '<td>'.$item->password.'</td>';
   echo '</tr>';
   }
   echo '</table>';
-echo "<h1> Select all Records from todos after inserting</h1>";
+echo "<h1> Select all Records from todos after inserting, updating,deleting</h1>";
 echo '<table border="1">';
   echo '<tr><th>ID</th><th>OwnerEmail</th><th>ownerid</th><th>createddate</th><th>duedate</th><th>message</th><th>isdone</th></tr>';
 	
