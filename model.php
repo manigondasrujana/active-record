@@ -1,24 +1,26 @@
 <?php
 namespace activerecord;
-
 abstract class model {
     protected $tableName;
-public function save()
+    public function save()
 	    {
 	if ($this->id != '') {
 	$sql = $this->update($this->id);
+ $db = dbConn::getConnection();
+ $statement = $db->prepare($sql);
 	        } else {
 		            $sql = $this->insert();
 	 }
-	$db = dbConn::getConnection();
-        $statement = $db->prepare($sql);
+//	$db = dbConn::getConnection();
+  //      $statement = $db->prepare($sql);
   $array = get_object_vars($this);
                 foreach (array_flip($array) as $record=>$item){
                 
             $statement->bindParam(":$item", $this->$item);
+            $statement->execute();
         }
         
-        $statement->execute();
+       // $statement->execute();
         //$tableName = get_called_class();
 	
        // $columnString = implode(',', $array);
@@ -27,8 +29,7 @@ public function save()
   echo '<h2>I just saved record: </h2>';
 	echo '<hr/>';
 	}
-
-private function insert() {
+	private function insert() {
  $modelName=get_called_class();
         $tableName = $modelName::tname();
         $array = get_object_vars($this);
@@ -41,7 +42,7 @@ private function insert() {
      		echo '<hr/>';
         
 	    }
-private function update($id) {
+        private function update($id) {
 	        $modelName=get_called_class();
         $tableName = $modelName::tname();
         $array = get_object_vars($this);
@@ -60,7 +61,7 @@ private function update($id) {
 	        //echo 'I just updated record' . $this->id;
 	    	echo '<hr/>';
 	    }
-public function delete($id) {
+	 public function delete($id) {
            $db = dbConn::getConnection();
         $modelName=get_called_class();
         $tableName = $modelName::tname();
@@ -71,5 +72,3 @@ public function delete($id) {
 		 echo '<hr/>';    
 		     }
 }
-
-?>
